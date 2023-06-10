@@ -1,0 +1,47 @@
+:root {
+    --green-clr: #00c1b5;
+    --orange-clr: #ff651a;
+    --yellow-clr: #ffbe00;
+    --blue-clr: #1d3fbb;
+    --red-clr: #e30512;
+}
+html {
+    box-sizing: border-box;
+    height: 100%;
+}
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    scroll-behavior: smooth;
+}
+
+html,
+body,
+main {
+    height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+ul,
+ol {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
