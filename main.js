@@ -5,9 +5,12 @@ const booksModule = (function () {
   }
 
   function createBookElement(issueName, bookColor, bookImgSrc) {
+    const booksContainer = document.querySelector(".books-container");
     const article = document.createElement("article");
     article.setAttribute("clr", bookColor);
     article.setAttribute("class", "book");
+    article.setAttribute("id", `${issueName}`);
+
     article.setAttribute("role", "region");
     article.setAttribute("aria-label", issueName);
 
@@ -27,20 +30,29 @@ const booksModule = (function () {
     div.appendChild(p);
 
     article.appendChild(div);
-    return article;
+    booksContainer.appendChild(article);
+  }
+
+  function createIssueNavItem(issueName) {
+    const listItem = document.createElement("li");
+    listItem.classList.add("issues-nav__item");
+    const link = document.createElement("a");
+    link.href = `#${issueName}`;
+    link.classList.add("issues-nav__link");
+    link.textContent = issueName;
+
+    listItem.appendChild(link);
+
+    const issuesNavList = document.querySelector(".issues-nav__list");
+    issuesNavList.appendChild(listItem);
   }
 
   async function fillBooksContainer() {
     const booksData = await fetchBooksData();
-    const container = document.querySelector(".books-container");
 
     for (const bookEntry of booksData.books) {
-      const bookElement = createBookElement(
-        bookEntry.name,
-        bookEntry.color,
-        bookEntry.src
-      );
-      container.appendChild(bookElement);
+      createBookElement(bookEntry.name, bookEntry.color, bookEntry.src);
+      createIssueNavItem(bookEntry.name);
     }
   }
 
@@ -48,12 +60,17 @@ const booksModule = (function () {
 })();
 
 const behaviorModule = (function () {
-  const issuesList = Array.from(
-    document.querySelector(".issues-nav__list").children
-  );
-  const container = document.querySelector(".books-container");
+  let issuesList = null;
+  let container = null;
+  let cache = null;
 
-  let cache = issuesList[0];
+  function initializeDomElements() {
+    issuesList = Array.from(
+      document.querySelector(".issues-nav__list").children
+    );
+    container = document.querySelector(".books-container");
+    cache = issuesList[0];
+  }
 
   function changeBackgroundColor(currentBook) {
     const clr = currentBook.getAttribute("clr");
@@ -66,6 +83,7 @@ const behaviorModule = (function () {
   }
 
   function createIntersectionObserver() {
+    initializeDomElements();
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
