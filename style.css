@@ -100,18 +100,24 @@ footer {
     left: 50%;
     translate: -50% -50%;
     max-width: 450px;
+    width: 100%;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 .book__img {
     width: 100%;
-   
 }
-.book__number{
+.book__name {
     font-weight: 800;
+}
+
+.book__buy-link {
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-top: 10px;
+    text-decoration: underline;
 }
 
 footer {
@@ -127,10 +133,16 @@ footer {
     font-weight: 800;
 }
 
-
-
- @media only screen and (max-width: 875px) {
-    footer,header{
+@media only screen and (max-width: 768px) {
+    footer {
         opacity: 0;
     }
- }
+    .book__details {
+        max-width: 550px;
+    }
+}
+@media only screen and (max-width: 567px) {
+    header {
+        justify-content: center;
+    }
+}

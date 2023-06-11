@@ -4,55 +4,65 @@ const booksModule = (function () {
     return response.json();
   }
 
-  function createBookElement(issueName, bookColor, bookImgSrc) {
+  function createBookElement(issueNumber, bookColor, bookImgSrc) {
     const booksContainer = document.querySelector(".books-container");
-    const article = document.createElement("article");
-    article.setAttribute("clr", bookColor);
-    article.setAttribute("class", "book");
-    article.setAttribute("id", `${issueName}`);
+    const bookArticleElement = document.createElement("article");
+    bookArticleElement.setAttribute("clr", bookColor);
+    bookArticleElement.setAttribute("class", "book");
+    bookArticleElement.setAttribute("id", `issue #${issueNumber}`);
 
-    article.setAttribute("role", "region");
-    article.setAttribute("aria-label", issueName);
+    bookArticleElement.setAttribute("role", "region");
+    bookArticleElement.setAttribute("aria-label", `issue #${issueNumber}`);
 
-    const div = document.createElement("div");
-    div.setAttribute("class", "book__details");
+    const bookDetailsElement = document.createElement("div");
+    bookDetailsElement.setAttribute("class", "book__details");
 
-    const img = document.createElement("img");
-    img.setAttribute("src", bookImgSrc);
-    img.setAttribute("alt", "Book image");
-    img.setAttribute("class", "book__img");
+    const bookImgElement = document.createElement("img");
+    bookImgElement.setAttribute("src", bookImgSrc);
+    bookImgElement.setAttribute("alt", "Book image");
+    bookImgElement.setAttribute("class", "book__img");
 
-    const p = document.createElement("p");
-    p.setAttribute("class", "book__number");
-    p.textContent = issueName;
+    const bookNameElement = document.createElement("p");
+    bookNameElement.setAttribute("class", "book__name");
+    bookNameElement.textContent = `issue #${issueNumber}`;
 
-    div.appendChild(img);
-    div.appendChild(p);
+    const bookBuyLinkElement = document.createElement("a");
+    bookBuyLinkElement.setAttribute("class", "book__buy-link");
+    bookBuyLinkElement.setAttribute(
+      "href",
+      `https://brot.sk/products/backstage-talks-issue-${issueNumber}`
+    );
 
-    article.appendChild(div);
-    booksContainer.appendChild(article);
+    bookBuyLinkElement.textContent = "pre order here";
+
+    bookDetailsElement.appendChild(bookImgElement);
+    bookDetailsElement.appendChild(bookNameElement);
+    bookDetailsElement.appendChild(bookBuyLinkElement);
+
+    bookArticleElement.appendChild(bookDetailsElement);
+    booksContainer.appendChild(bookArticleElement);
   }
 
-  function createIssueNavItem(issueName) {
-    const listItem = document.createElement("li");
-    listItem.classList.add("issues-nav__item");
-    const link = document.createElement("a");
-    link.href = `#${issueName}`;
-    link.classList.add("issues-nav__link");
-    link.textContent = issueName;
+  function createIssueNavItem(issueNumber) {
+    const listItemElement = document.createElement("li");
+    listItemElement.classList.add("issues-nav__item");
+    const linkElement = document.createElement("a");
+    linkElement.href = `#issue #${issueNumber}`;
+    linkElement.classList.add("issues-nav__link");
+    linkElement.textContent = `Issue #${issueNumber}`;
 
-    listItem.appendChild(link);
+    listItemElement.appendChild(linkElement);
 
     const issuesNavList = document.querySelector(".issues-nav__list");
-    issuesNavList.appendChild(listItem);
+    issuesNavList.appendChild(listItemElement);
   }
 
   async function fillBooksContainer() {
     const booksData = await fetchBooksData();
 
     for (const bookEntry of booksData.books) {
-      createBookElement(bookEntry.name, bookEntry.color, bookEntry.src);
-      createIssueNavItem(bookEntry.name);
+      createBookElement(bookEntry.issueNumber, bookEntry.color, bookEntry.src);
+      createIssueNavItem(bookEntry.issueNumber);
     }
   }
 

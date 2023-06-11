@@ -1,32 +1,32 @@
 {
   "books": [
     {
-      "name": "issue #1",
+      "issueNumber": "1",
       "color": "#e30512",
       "src": "./assets/images/issue 1.png"
     },
     {
-      "name": "issue #2",
+      "issueNumber": "2",
       "color": "#1d3fbb",
       "src": "./assets/images/issue 2.png"
     },
     {
-      "name": "issue #3",
+      "issueNumber": "3",
       "color": "#ffbe00",
       "src": "./assets/images/issue 3.png"
     },
     {
-      "name": "issue #4",
+      "issueNumber": "4",
       "color": "#ff651a",
       "src": "./assets/images/issue 4.png"
     },
     {
-      "name": "issue #5",
+      "issueNumber": "5",
       "color": "#00c1b5",
       "src": "./assets/images/issue 5.png"
     },
     {
-      "name": "issue #6",
+      "issueNumber": "6",
       "color": "#fff",
       "src": "./assets/images/issue 6.png"
     }
