@@ -51,7 +51,7 @@ body {
 }
 
 .books-container {
-    transition: all 225ms ease-out;
+    transition: all 150ms ease-out;
 }
 
 main {

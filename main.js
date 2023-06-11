@@ -86,7 +86,7 @@ const behaviorModule = (function () {
         });
       },
       {
-        rootMargin: "-100px",
+        threshold:0.5,
       }
     );
 
