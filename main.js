@@ -3,6 +3,7 @@ const booksModule = (function () {
     const response = await fetch("./booksData.json");
     return response.json();
   }
+
   function createBookElement(issueNumber, bookColor, bookImgSrc) {
     const booksContainer = document.querySelector(".books-container");
     const bookArticleElement = document.createElement("article");
@@ -20,7 +21,6 @@ const booksModule = (function () {
     bookDetailsElement.setAttribute("class", "book__details");
 
     const bookImgElement = document.createElement("img");
-    // bookImgElement.setAttribute("src", bookImgSrc);
     bookImgElement.setAttribute("data-src", bookImgSrc);
     bookImgElement.setAttribute("alt", "Book image");
     bookImgElement.setAttribute("class", "book__img");
@@ -96,18 +96,19 @@ const behaviorModule = (function () {
   }
 
   function createIntersectionObserver() {
-    initializeDomElements();
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const img = entry.target.children[0].children[0];
-            const src = img.getAttribute("data-src");
             const index = Array.from(container.children).indexOf(entry.target);
             changeActiveIssue(issuesList[index]);
             changeBackgroundColor(entry.target);
             cache = issuesList[index];
-            img.setAttribute("src", src);
+            const bookImg = entry.target.children[0].children[0];
+            if (!bookImg.getAttribute("src")) {
+              const src = bookImg.getAttribute("data-src");
+              bookImg.setAttribute("src", src);
+            }
           }
         });
       },
@@ -121,11 +122,12 @@ const behaviorModule = (function () {
     });
   }
 
-  return { createIntersectionObserver };
+  return { createIntersectionObserver, initializeDomElements };
 })();
 
 async function main() {
   await booksModule.fillBooksContainer();
+  behaviorModule.initializeDomElements();
   behaviorModule.createIntersectionObserver();
 }
 
