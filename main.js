@@ -6,55 +6,28 @@ const booksModule = (function () {
 
   function createBookElement(issueNumber, bookColor, bookImgSrc) {
     const booksContainer = document.querySelector(".books-container");
-    const bookArticleElement = document.createElement("article");
-    bookArticleElement.setAttribute("clr", bookColor);
-    bookArticleElement.setAttribute("class", "book");
-    bookArticleElement.setAttribute("id", `issue ${issueNumber}`);
 
-    bookArticleElement.setAttribute("role", "region");
-    bookArticleElement.setAttribute(
-      "aria-label",
-      `issue number ${issueNumber}`
-    );
+    const bookElement = `
+    <article clr="${bookColor}" class="book" id="issue ${issueNumber}" role="region" aria-label="issue number ${issueNumber}">
+      <div class="book__details">
+        <img data-src="${bookImgSrc}" alt="Book image" class="book__img">
+        <p class="book__name">issue #${issueNumber}</p>
+        <a class="book__buy-link" href="https://brot.sk/products/backstage-talks-issue-${issueNumber}">pre order here</a>
+      </div>
+    </article>
+  `;
 
-    const bookDetailsElement = document.createElement("div");
-    bookDetailsElement.setAttribute("class", "book__details");
-
-    const bookImgElement = document.createElement("img");
-    bookImgElement.setAttribute("data-src", bookImgSrc);
-    bookImgElement.setAttribute("alt", "Book image");
-    bookImgElement.setAttribute("class", "book__img");
-
-    const bookNameElement = document.createElement("p");
-    bookNameElement.setAttribute("class", "book__name");
-    bookNameElement.textContent = `issue #${issueNumber}`;
-
-    const bookBuyLinkElement = document.createElement("a");
-    bookBuyLinkElement.setAttribute("class", "book__buy-link");
-    bookBuyLinkElement.setAttribute(
-      "href",
-      `https://brot.sk/products/backstage-talks-issue-${issueNumber}`
-    );
-
-    bookBuyLinkElement.textContent = "pre order here";
-
-    bookDetailsElement.appendChild(bookImgElement);
-    bookDetailsElement.appendChild(bookNameElement);
-    bookDetailsElement.appendChild(bookBuyLinkElement);
-
-    bookArticleElement.appendChild(bookDetailsElement);
-    booksContainer.appendChild(bookArticleElement);
+    booksContainer.innerHTML += bookElement;
   }
-
   function createIssueNavItem(issueNumber) {
     const listItemElement = document.createElement("li");
     listItemElement.classList.add("issues-nav__item");
-    const linkElement = document.createElement("a");
-    linkElement.href = `#issue ${issueNumber}`;
-    linkElement.classList.add("issues-nav__link");
-    linkElement.textContent = `Issue #${issueNumber}`;
 
-    listItemElement.appendChild(linkElement);
+    listItemElement.innerHTML = `
+    <a href="#issue ${issueNumber}" class="issues-nav__link">
+      Issue #${issueNumber}
+    </a>
+  `;
 
     const issuesNavList = document.querySelector(".issues-nav__list");
     issuesNavList.appendChild(listItemElement);

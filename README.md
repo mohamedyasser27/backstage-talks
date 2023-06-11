@@ -36,4 +36,4 @@ If you'd like to view the project locally, you can follow these steps:
 2. Open the index.html file in your preferred web browser.
 3. start the live server
 
-If you'd like to view the Final Result you can visit this ![site](https://mohamedyasser27.github.io/backstage-talks/)
+If you'd like to view the Final Result, you can visit this [site](https://mohamedyasser27.github.io/backstage-talks/)
