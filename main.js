@@ -3,22 +3,25 @@ const booksModule = (function () {
     const response = await fetch("./booksData.json");
     return response.json();
   }
-
   function createBookElement(issueNumber, bookColor, bookImgSrc) {
     const booksContainer = document.querySelector(".books-container");
     const bookArticleElement = document.createElement("article");
     bookArticleElement.setAttribute("clr", bookColor);
     bookArticleElement.setAttribute("class", "book");
-    bookArticleElement.setAttribute("id", `issue #${issueNumber}`);
+    bookArticleElement.setAttribute("id", `issue ${issueNumber}`);
 
     bookArticleElement.setAttribute("role", "region");
-    bookArticleElement.setAttribute("aria-label", `issue #${issueNumber}`);
+    bookArticleElement.setAttribute(
+      "aria-label",
+      `issue number ${issueNumber}`
+    );
 
     const bookDetailsElement = document.createElement("div");
     bookDetailsElement.setAttribute("class", "book__details");
 
     const bookImgElement = document.createElement("img");
-    bookImgElement.setAttribute("src", bookImgSrc);
+    // bookImgElement.setAttribute("src", bookImgSrc);
+    bookImgElement.setAttribute("data-src", bookImgSrc);
     bookImgElement.setAttribute("alt", "Book image");
     bookImgElement.setAttribute("class", "book__img");
 
@@ -47,7 +50,7 @@ const booksModule = (function () {
     const listItemElement = document.createElement("li");
     listItemElement.classList.add("issues-nav__item");
     const linkElement = document.createElement("a");
-    linkElement.href = `#issue #${issueNumber}`;
+    linkElement.href = `#issue ${issueNumber}`;
     linkElement.classList.add("issues-nav__link");
     linkElement.textContent = `Issue #${issueNumber}`;
 
@@ -98,15 +101,18 @@ const behaviorModule = (function () {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            const img = entry.target.children[0].children[0];
+            const src = img.getAttribute("data-src");
             const index = Array.from(container.children).indexOf(entry.target);
             changeActiveIssue(issuesList[index]);
             changeBackgroundColor(entry.target);
             cache = issuesList[index];
+            img.setAttribute("src", src);
           }
         });
       },
       {
-        rootMargin: "-50px",
+        rootMargin: "-100px",
       }
     );
 
