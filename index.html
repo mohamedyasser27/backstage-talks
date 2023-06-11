@@ -4,87 +4,54 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./normalize.css" />
     <link rel="stylesheet" href="./style.css" />
     <title>Backstage talks</title>
   </head>
   <body>
-    <main class="container">
-      <header>
-        <img src="./assets/images/logo.png" alt="" />
+    <main>
+      <header class="header">
+        <img class="header__logo" src="./assets/images/logo.png" alt="" />
+        <a class="header__email" href="mailto:info@backstagetalks.com"
+          >info@backstagetalks.com</a
+        >
       </header>
-      <section
-        clr="#e30512"
-        class="book-container"
-        role="region"
-        aria-label="Issue 1"
-      >
-        <img
-          src="./assets/images/issue 1.png"
-          alt="Book image"
-          class="book-img"
-        />
-      </section>
-      <section
-        clr="#1d3fbb"
-        class="book-container"
-        role="region"
-        aria-label="Issue 2"
-      >
-        <img
-          src="./assets/images/issue 2.png"
-          alt="Book image"
-          class="book-img"
-        />
-      </section>
-      <section
-        clr="#ffbe00"
-        class="book-container"
-        role="region"
-        aria-label="Issue 3"
-      >
-        <img
-          src="./assets/images/issue 3.png"
-          alt="Book image"
-          class="book-img"
-        />
-      </section>
-      <section
-        clr="#ff651a"
-        class="book-container"
-        role="region"
-        aria-label="Issue 4"
-      >
-        <img
-          src="./assets/images/issue 4.png"
-          alt="Book image"
-          class="book-img"
-        />
-      </section>
-      <section
-        clr="#00c1b5"
-        class="book-container"
-        role="region"
-        aria-label="Issue 5"
-      >
-        <img
-          src="./assets/images/issue 5.png"
-          alt="Book image"
-          class="book-img"
-        />
-      </section>
-      <section
-        clr="#fff"
-        class="book-container"
-        role="region"
-        aria-label="Issue 6"
-      >
-        <img
-          src="./assets/images/issue 6.png"
-          alt="Book image"
-          class="book-img"
-        />
-      </section>
+      <section class="books-container"></section>
+      <footer>
+        <p class="company-description">
+          Backstage Talks is a magazine of casual, but in depth dialogues on
+          design and business. Our decisions shape and influence this complex
+          world—to have a chance to make the right ones, we need to talk.
+        </p>
+        <nav class="issues-nav">
+          <ul class="issues-nav__list">
+            <li class="issues-nav__item">
+              <a href="" class="issues-nav__link">issue #1</a>
+            </li>
+            <li class="issues-nav__item">
+              <a href="" class="issues-nav__link">issue #2</a>
+            </li>
+            <li class="issues-nav__item">
+              <a href="" class="issues-nav__link">issue #3</a>
+            </li>
+            <li class="issues-nav__item">
+              <a href="" class="issues-nav__link">issue #4</a>
+            </li>
+            <li class="issues-nav__item">
+              <a href="" class="issues-nav__link">issue #5</a>
+            </li>
+            <li class="issues-nav__item">
+              <a href="" class="issues-nav__link">issue #6</a>
+            </li>
+          </ul>
+        </nav>
+      </footer>
     </main>
   </body>
 
