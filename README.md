@@ -10,6 +10,10 @@ This repository contains my solution to the [backstage Talks](https://www.fronte
 - CSS
 - JavaScript (if applicable)
 
+## Links
+
+- Live Site URL: [site](https://mohamedyasser27.github.io/backstage-talks/)
+
 ## Screenshots
 
 ### Desktop View
@@ -27,6 +31,7 @@ In this challenge, I learned and applied various frontend development concepts a
 - using scroll-snap-type to add snapping to the scroll
 - us smooth-scroll to add a transition to scrolling
 - creating elements dynamically for better scalability
+- lazy load images when i scroll to them
 
 ## Getting Started
 
